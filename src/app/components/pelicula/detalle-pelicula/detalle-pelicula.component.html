@@ -1,0 +1,9 @@
+<ul class="list-group text-left">
+  <li class="list-group-item"><img src="{{this.peliculaSeleccionada?.foto}}" width="200px" height="300px"></li>
+  <li class="list-group-item"><span>Nombre:</span> <input type="text" [readonly]="readOnly" class="form-control-plaintext" value="{{this.peliculaSeleccionada?.nombre}}"></li>
+  <li class="list-group-item"><span>Cantidad de público:</span> <input type="text" [readonly]="readOnly" class="form-control-plaintext" value="{{this.peliculaSeleccionada?.cantidadPublico}}"></li>
+  <li class="list-group-item"><span>Fecha estreno:</span>  <input type="text" [readonly]="readOnly" class="form-control-plaintext" value="{{this.peliculaSeleccionada?.fechaEstreno}}"></li>
+  <li class="list-group-item"><span>Género:</span>  <input type="text" [readonly]="readOnly" class="form-control-plaintext" value="{{this.peliculaSeleccionada?.tipo}}"></li>
+  <li class="list-group-item"><span>Image URL:</span> <textarea [readonly]="readOnly" class="form-control-plaintext imageUrl" value="{{this.peliculaSeleccionada?.foto}}"></textarea></li>
+</ul>
+

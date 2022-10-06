@@ -1,0 +1,54 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Alta de actor</h1>
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Países</span>
+          <span class="badge badge-secondary badge-pill">3</span>
+        </h4>
+        <app-tabla-paises (paisSeleccionado)="paisSeleccionado($event)"></app-tabla-paises>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Formulario</h4>
+        <form [formGroup]="actor" (ngSubmit)="guardarActor()" novalidate="">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">Nombre</label>
+              <input type="text" class="form-control" id="firstName" formControlName="nombre">
+              <div class="error-validation"
+                   *ngIf="actor.get('nombre')?.hasError('required') && actor.get('nombre')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Apellido</label>
+              <input type="text" class="form-control" id="lastName" formControlName="apellido">
+              <div class="error-validation"
+                   *ngIf="actor.get('apellido')?.hasError('required') && actor.get('apellido')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">País</span>
+              </div>
+              <input type="text" class="form-control" id="username" readonly
+                     [value]="paisOrigen">
+            </div>
+          </div>
+          <div class="error-validation" *ngIf="sent && paisOrigen.length===0">
+            <p>Tenes que completar este campo con un país del listado</p>
+          </div>
+          <hr class="mb-4">
+          <button *ngIf="!saved" class="btn btn-primary btn-lg btn-block" [disabled]="actor.invalid" type="submit">Enviar</button>
+          <div *ngIf="saved" class="alert alert-success" role="alert">
+            Actor cargado con éxito!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

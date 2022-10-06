@@ -1,0 +1,28 @@
+<app-pelicula-listado (detallePelicula)="peliculaSeleccionada($event)"></app-pelicula-listado>
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Para borrar</h2>
+      <div *ngIf="unaPelicula" class="text-center">
+        <app-detalle-pelicula [peliculaSeleccionada]="unaPelicula"></app-detalle-pelicula>
+        <p><a class="btn btn-danger eliminarBtn" href="#" role="button" (click)="eliminar(unaPelicula)">Borrar</a></p>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <h2>Detalle</h2>
+      <app-detalle-pelicula [peliculaSeleccionada]="unaPelicula" *ngIf="unaPelicula"></app-detalle-pelicula>
+    </div>
+    <div class="col-md-4 text-center">
+      <h2>Modificar</h2>
+      <div *ngIf="unaPelicula" class="text-center">
+        <app-detalle-pelicula [peliculaSeleccionada]="unaPelicula" *ngIf="unaPelicula"
+                              [readOnly]="false"></app-detalle-pelicula>
+        <a class="btn btn-primary modificarBtn" href="#" role="button">Modificar</a>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+</div>
