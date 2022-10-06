@@ -1,1 +1,77 @@
-<p>pelicula-alta works!</p>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Alta de película</h1>
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Actores</span>
+        </h4>
+        <app-actor-listado (actorSeleccionado)="actorSeleccionado($event)"></app-actor-listado>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Formulario</h4>
+        <form [formGroup]="peliculaForm" (ngSubmit)="guardarPelicula()" novalidate="">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">Nombre</label>
+              <input type="text" class="form-control" id="firstName" formControlName="nombre">
+              <div class="error-validation"
+                   *ngIf="peliculaForm.get('nombre')?.hasError('required') && peliculaForm.get('nombre')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Tipo</label>
+              <input type="text" class="form-control" id="lastName" formControlName="tipo">
+              <div class="error-validation"
+                   *ngIf="peliculaForm.get('tipo')?.hasError('required') && peliculaForm.get('tipo')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="firstName">Fecha de estreno</label>
+              <input type="date" class="form-control" id="fechaEstreno" formControlName="fechaEstreno">
+              <div class="error-validation"
+                   *ngIf="peliculaForm.get('fechaEstreno')?.hasError('required') && peliculaForm.get('fechaEstreno')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Cantidad de público</label>
+              <input type="number" class="form-control" id="cantidadPublico" formControlName="cantidadPublico">
+              <div class="error-validation"
+                   *ngIf="peliculaForm.get('cantidadPublico')?.hasError('required') && peliculaForm.get('cantidadPublico')?.touched">
+                <p>Tenes que completar este campo</p>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Actor</span>
+              </div>
+              <input type="text" class="form-control" id="username" readonly
+                     [value]="actorProtagonista">
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Imagen película</span>
+              </div>
+              <input type="text" class="form-control" id="cover" formControlName="foto">
+            </div>
+          </div>
+          <div class="error-validation" *ngIf="peliculaForm.get('foto')?.hasError('required') && peliculaForm.get('foto')?.touched">
+            <p>Tenes que completar este campo con una URL de imagen.</p>
+          </div>
+          <hr class="mb-4">
+          <button *ngIf="!saved" class="btn btn-primary btn-lg btn-block" [disabled]="peliculaForm.invalid" type="submit">Enviar</button>
+          <div *ngIf="saved" class="alert alert-success" role="alert">
+            Película cargada con éxito!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

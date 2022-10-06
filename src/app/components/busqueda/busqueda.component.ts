@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Pelicula} from "../../classes/pelicula";
+import {PeliculaService} from "../../services/pelicula.service";
 
 @Component({
   selector: 'app-busqueda',
@@ -8,7 +9,7 @@ import {Pelicula} from "../../classes/pelicula";
 })
 export class BusquedaComponent implements OnInit {
 
-  constructor() {
+  constructor(private peliculaService: PeliculaService) {
   }
 
   public unaPelicula: Pelicula | undefined;
@@ -21,8 +22,14 @@ export class BusquedaComponent implements OnInit {
   }
 
   eliminar(unaPelicula: Pelicula) {
-    if(unaPelicula){
-      console.log("Pelicula para eliminar: ", unaPelicula)
+    if (unaPelicula) {
+      this.peliculaService.eliminar(unaPelicula);
+    }
+  }
+
+  modificar(unaPelicula: Pelicula) {
+    if (unaPelicula) {
+      console.log("Pelicula para modificar: ", unaPelicula)
     }
   }
 }

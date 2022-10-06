@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Pelicula} from '../../../classes/pelicula';
 import {PeliculaService} from "../../../services/pelicula.service";
+import {Actor} from "../../../classes/actor";
 
 @Component({
   selector: 'app-pelicula-listado',
@@ -16,10 +17,11 @@ export class PeliculaListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.peliculas.push(new Pelicula('1', 'The Shawshank Redemption', 'Drama', '1999-08-01', 1999332, 'https://ringostrack.com/storage/covers/50339_the-shawshank-redemption.jpg'))
-    // this.peliculaService.alta(new Pelicula('1', 'The Shawshank Redemption', 'Drama', '1999-08-01', 1999332, 'https://ringostrack.com/storage/covers/50339_the-shawshank-redemption.jpg'));
-    // this.peliculaService.alta(new Pelicula('2', 'The Godfather', 'Drama', '1999-08-01', 1999332, 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg'));
-    // this.peliculaService.getAll().then(x => console.log(x))
+    this.peliculaService.obtenerPeliculas().subscribe(peliculas => {
+      peliculas.map((p: Pelicula) => {
+        this.peliculas.push(new Pelicula(p.nombre, p.tipo, p.fechaEstreno, p.cantidadPublico, p.foto, p.actor))
+      })
+    })
   }
 
   notificarClickPelicula($event: Pelicula): void {

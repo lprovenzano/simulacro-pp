@@ -1,1 +1,10 @@
-<p>actor-listado works!</p>
+<div class='loader text-center' *ngIf="isLoading && this.actores.length<=0"></div>
+
+<ul class="list-group mb-3" *ngIf="!isLoading && this.actores.length>0">
+  <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let actor of this.actores" (click)="seleccionarActor(actor)">
+    <div>
+      <h6 class="my-0">{{actor.nombre}} {{actor.apellido}}</h6>
+      <small class="text-muted">{{actor.pais}}</small>
+    </div>
+  </li>
+</ul>

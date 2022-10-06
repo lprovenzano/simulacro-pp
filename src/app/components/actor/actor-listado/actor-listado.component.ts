@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Actor} from "../../../classes/actor";
+import {ActorService} from "../../../services/actor.service";
 
 @Component({
   selector: 'app-actor-listado',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActorListadoComponent implements OnInit {
 
-  constructor() { }
+  @Output() actorSeleccionado: EventEmitter<Actor> = new EventEmitter();
 
-  ngOnInit(): void {
+  public isLoading: boolean = true;
+  public actores: Actor[] = [];
+
+  constructor(private actorService: ActorService) {
   }
 
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.actorService.obtenerActores().subscribe(actores => {
+        actores.map((a: Actor) => {
+          this.actores.push(new Actor(a.nombre, a.apellido, a.pais))
+        })
+      })
+      this.isLoading = false;
+    }, 1000);
+  }
+
+  seleccionarActor(actor: Actor) {
+    this.actorSeleccionado.emit(actor);
+  }
 }

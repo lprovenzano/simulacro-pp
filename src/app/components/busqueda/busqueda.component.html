@@ -18,7 +18,7 @@
       <div *ngIf="unaPelicula" class="text-center">
         <app-detalle-pelicula [peliculaSeleccionada]="unaPelicula" *ngIf="unaPelicula"
                               [readOnly]="false"></app-detalle-pelicula>
-        <a class="btn btn-primary modificarBtn" href="#" role="button">Modificar</a>
+        <a class="btn btn-primary modificarBtn" href="#" role="button" (click)="modificar(unaPelicula)">Modificar</a>
       </div>
     </div>
   </div>
